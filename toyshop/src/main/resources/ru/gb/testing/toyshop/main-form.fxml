@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="480.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.gb.testing.toyshop.controller.MainForm">
+   <children>
+      <VBox layoutX="13.0" layoutY="14.0" prefHeight="456.0" prefWidth="745.0">
+         <children>
+            <AnchorPane prefHeight="33.0" prefWidth="745.0">
+               <children>
+                  <Button fx:id="buttonAdd" layoutY="2.0" mnemonicParsing="false" text="Добавить игрушку" />
+                  <Button fx:id="buttonGame" layoutX="261.0" layoutY="2.0" mnemonicParsing="false" text="Провести розыгрыш" />
+                  <Button fx:id="buttonEdit" layoutX="124.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Изменить игрушку" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="228.0" prefWidth="745.0">
+               <children>
+                  <TableView fx:id="tableToys" prefHeight="223.0" prefWidth="745.0">
+                    <columns>
+                      <TableColumn fx:id="colToyID" prefWidth="75.0" text="Код" />
+                      <TableColumn fx:id="colToyName" prefWidth="246.0" text="Наименование" />
+                      <TableColumn fx:id="colToyCnt" prefWidth="117.0" text="Кол-во" />
+                      <TableColumn fx:id="colToyRange" prefWidth="120.0" text="Частота" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="745.0">
+                     <children>
+                        <AnchorPane prefHeight="29.0" prefWidth="745.0">
+                           <children>
+                              <Button layoutY="2.0" mnemonicParsing="false" text="Выдать игрушку" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="160.0" prefWidth="745.0">
+                           <children>
+                              <TableView prefHeight="174.0" prefWidth="745.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="Код" />
+                                  <TableColumn prefWidth="289.0" text="Наименование" />
+                                  <TableColumn prefWidth="105.0" text="Выдана" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
