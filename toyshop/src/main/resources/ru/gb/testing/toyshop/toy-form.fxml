@@ -17,19 +17,19 @@
                   <AnchorPane prefHeight="37.0" prefWidth="410.0">
                      <children>
                         <Label layoutX="14.0" layoutY="10.0" text="Название" />
-                        <TextField layoutX="117.0" layoutY="6.0" prefHeight="25.0" prefWidth="283.0" />
+                        <TextField fx:id="txName" layoutX="117.0" layoutY="6.0" prefHeight="25.0" prefWidth="283.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="37.0" prefWidth="467.0">
                      <children>
                         <Label layoutX="14.0" layoutY="10.0" text="Кол-во" />
-                        <TextField layoutX="117.0" layoutY="6.0" prefHeight="25.0" prefWidth="283.0" />
+                        <TextField fx:id="txCount" layoutX="117.0" layoutY="6.0" prefHeight="25.0" prefWidth="283.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="37.0" prefWidth="467.0">
                      <children>
                         <Label layoutX="14.0" layoutY="10.0" text="Частота" />
-                        <TextField layoutX="117.0" layoutY="6.0" prefHeight="25.0" prefWidth="283.0" />
+                        <TextField fx:id="txRange" layoutX="117.0" layoutY="6.0" prefHeight="25.0" prefWidth="283.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -38,12 +38,12 @@
                <children>
                   <AnchorPane prefHeight="35.0" prefWidth="129.0">
                      <children>
-                        <Button layoutY="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Ok" />
+                        <Button fx:id="buttonOk" onAction="#actionOk" layoutY="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Ok" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="35.0" prefWidth="129.0">
                      <children>
-                        <Button layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Отмена" />
+                        <Button fx:id="buttonCancel" onAction="#actionClose" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Отмена" />
                      </children>
                   </AnchorPane>
                </children>

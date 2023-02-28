@@ -5,18 +5,23 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Toy implements Comparable<Toy> {
-    private SimpleIntegerProperty toyId;
-    private SimpleStringProperty toyName;
+    private final SimpleIntegerProperty toyId = new SimpleIntegerProperty(0);
+    private final SimpleStringProperty toyName = new SimpleStringProperty("");
+    private final SimpleIntegerProperty toyCount = new SimpleIntegerProperty(0);
+    private final SimpleIntegerProperty toyRate = new SimpleIntegerProperty(0);
 
-    private SimpleIntegerProperty toyCount;
+    public Toy(){
+        this.setToyName("");
+        this.setToyCount(0);
+        this.setToyRate(1);
+        this.setToyId(0);
+    }
 
-    private SimpleDoubleProperty toyRate;
-
-
-
-
-    public Toy(String name){
-        toyName.set(name);
+    public Toy(String name, int count, int rate){
+        this.setToyName(name);
+        this.setToyCount(count);
+        this.setToyRate(rate);
+        this.setToyId(0);
     }
 
     public int getToyId() {
@@ -30,7 +35,6 @@ public class Toy implements Comparable<Toy> {
     public void setToyId(int toyId) {
         this.toyId.set(toyId);
     }
-
 
     public String getToyName() {
         return toyName.get();
@@ -56,15 +60,15 @@ public class Toy implements Comparable<Toy> {
         this.toyCount.set(toyCount);
     }
 
-    public double getToyRate() {
+    public int getToyRate() {
         return toyRate.get();
     }
 
-    public SimpleDoubleProperty toyRateProperty() {
+    public SimpleIntegerProperty toyRateProperty() {
         return toyRate;
     }
 
-    public void setToyRate(double toyRate) {
+    public void setToyRate(int toyRate) {
         this.toyRate.set(toyRate);
     }
 

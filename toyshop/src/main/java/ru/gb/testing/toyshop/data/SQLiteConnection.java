@@ -10,13 +10,19 @@ import java.util.logging.Logger;
  * Работа с БД
  */
 public class SQLiteConnection {
-    private static String sqlConnectionString = "jdbc:sqlite:\\database\\sqlite:.db";
+
+    private static String sqlConnectionString = "jdbc:sqlite:database"+ File.separator+"toys.db";
+
+    /*private static String sqlConnectionString = "jdbc:sqlite:db:" + new File("").getAbsolutePath()
+            + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator + "ru"
+            + File.separator + "gb" + File.separator + "testing" + File.separator + "toyshop"
+            + File.separator + "database" + File.separator + "toys.db";*/
     private static Connection connection;
 
     public static Connection getConnection() throws SQLException {
         // Если connection создается первый раз или ранее был закрыт - то нужно открыть новый connection
         // Самое главное - открывать соединение только по необходимости, а не держать его постоянно открытым (иначе вы будете блокировать файл БД)
-        if (connection == null || connection.isClosed()){
+        if (connection == null || connection.isClosed()) {
             try {
                 connection = DriverManager.getConnection(sqlConnectionString);
             } catch (SQLException ex) {

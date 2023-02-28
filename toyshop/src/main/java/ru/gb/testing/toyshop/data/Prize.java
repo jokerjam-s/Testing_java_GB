@@ -7,14 +7,14 @@ import javafx.beans.property.SimpleStringProperty;
 import java.util.Date;
 
 public class Prize {
-    private SimpleIntegerProperty prizeId;
-    private SimpleStringProperty prizeName;
-    private SimpleBooleanProperty prizeGiven;
+    private final SimpleIntegerProperty prizeId = new SimpleIntegerProperty(0);
+    private final SimpleStringProperty prizeName = new SimpleStringProperty("");
+    private final SimpleBooleanProperty prizeGiven = new SimpleBooleanProperty(false);
 
 
-    public Prize(String prizeName, boolean prizeGiven) {
-        this.prizeName.set(prizeName);
-        this.prizeGiven.set(prizeGiven);
+    public Prize(String name, boolean given) {
+        this.setPrizeName(name);
+        this.setPrizeGiven(given);
     }
 
     public int getPrizeId() {

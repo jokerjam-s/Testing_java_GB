@@ -12,9 +12,9 @@
          <children>
             <AnchorPane prefHeight="33.0" prefWidth="745.0">
                <children>
-                  <Button fx:id="buttonAdd" layoutY="2.0" mnemonicParsing="false" text="Добавить игрушку" />
-                  <Button fx:id="buttonGame" layoutX="261.0" layoutY="2.0" mnemonicParsing="false" text="Провести розыгрыш" />
-                  <Button fx:id="buttonEdit" layoutX="124.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Изменить игрушку" />
+                  <Button fx:id="buttonAdd" onAction="#buttonActionPressed" layoutY="2.0" mnemonicParsing="false" text="Добавить игрушку" />
+                  <Button fx:id="buttonGame" onAction="#buttonActionPressed" layoutX="261.0" layoutY="2.0" mnemonicParsing="false" text="Провести розыгрыш" />
+                  <Button fx:id="buttonEdit" onAction="#buttonActionPressed" layoutX="124.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Изменить игрушку" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="228.0" prefWidth="745.0">
@@ -35,12 +35,12 @@
                      <children>
                         <AnchorPane prefHeight="29.0" prefWidth="745.0">
                            <children>
-                              <Button layoutY="2.0" mnemonicParsing="false" text="Выдать игрушку" />
+                              <Button fx:id="buttonGetPrize" onAction="#buttonActionPressed" layoutY="2.0" mnemonicParsing="false" text="Выдать игрушку" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="160.0" prefWidth="745.0">
                            <children>
-                              <TableView prefHeight="174.0" prefWidth="745.0">
+                              <TableView fx:id="tablePrize" prefHeight="174.0" prefWidth="745.0">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="Код" />
                                   <TableColumn prefWidth="289.0" text="Наименование" />
