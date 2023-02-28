@@ -4,13 +4,15 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Toy {
+public class Toy implements Comparable<Toy> {
     private SimpleIntegerProperty toyId;
     private SimpleStringProperty toyName;
 
     private SimpleIntegerProperty toyCount;
 
     private SimpleDoubleProperty toyRate;
+
+
 
 
     public Toy(String name){
@@ -64,5 +66,21 @@ public class Toy {
 
     public void setToyRate(double toyRate) {
         this.toyRate.set(toyRate);
+    }
+
+    @Override
+    public int compareTo(Toy o) {
+        if(o == null){
+            return -1;
+        }
+
+        double delta = this.toyRate.get() - o.toyRate.get();
+        if(delta < 0){
+            return 1;
+        } else if (delta > 0) {
+            return -1;
+        }
+
+        return 0;
     }
 }
