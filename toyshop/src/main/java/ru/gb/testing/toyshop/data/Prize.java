@@ -4,13 +4,16 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.util.Date;
-
 public class Prize {
     private final SimpleIntegerProperty prizeId = new SimpleIntegerProperty(0);
     private final SimpleStringProperty prizeName = new SimpleStringProperty("");
     private final SimpleBooleanProperty prizeGiven = new SimpleBooleanProperty(false);
 
+    public Prize(){
+        this.setPrizeId(0);
+        this.setPrizeName("");
+        this.setPrizeGiven(false);
+    }
 
     public Prize(String name, boolean given) {
         this.setPrizeName(name);
@@ -52,4 +55,6 @@ public class Prize {
     public void setPrizeGiven(boolean prizeGiven) {
         this.prizeGiven.set(prizeGiven);
     }
+
+
 }

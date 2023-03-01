@@ -2,10 +2,8 @@ package ru.gb.testing.toyshop.services;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import ru.gb.testing.toyshop.data.Toy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -85,4 +83,5 @@ public class ToyList implements DateList<Toy> {
     public void deleteItem(int index) {
         toys.remove(index);
     }
+
 }

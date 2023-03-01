@@ -19,7 +19,9 @@ import ru.gb.testing.toyshop.utils.DialogManager;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
+import java.util.Optional;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.ResourceBundle;
 
 public class MainForm implements Initializable {
@@ -33,6 +35,9 @@ public class MainForm implements Initializable {
 
     @FXML
     private Button buttonEdit;
+
+    @FXML
+    private Button buttonDelete;
 
     @FXML
     private TableColumn<Toy, Integer> colToyID;
@@ -52,10 +57,17 @@ public class MainForm implements Initializable {
     @FXML
     private TableView tablePrize;
 
+    @FXML
+    private TableColumn<Prize, Integer> colPrizeId;
+    @FXML
+    private TableColumn<Prize, String> colPrizeName;
+    @FXML
+    private TableColumn<Prize, Boolean> colPrizeGiven;
+
+
     private ToyForm toyFormController;
     private Stage toyFormStage;
     private Parent fxmlEdit;
-
     private SqlToyShop toyShop;
 
 
@@ -68,17 +80,27 @@ public class MainForm implements Initializable {
         initLoaders(); // инициализируем все другие окна, которые участвуют в приложении
     }
 
-    private void fillData(){
+    /**
+     * Заполнение таблиц данными
+     */
+    private void fillData() {
         ObservableList<Toy> toys = toyShop.fillToys();
 
         colToyID.setCellValueFactory(new PropertyValueFactory<Toy, Integer>("toyId"));
         colToyName.setCellValueFactory(new PropertyValueFactory<Toy, String>("toyName"));
-        colToyCnt.setCellValueFactory(new PropertyValueFactory<Toy, Integer>("toyCnt"));
+        colToyCnt.setCellValueFactory(new PropertyValueFactory<Toy, Integer>("toyCount"));
         colToyRange.setCellValueFactory(new PropertyValueFactory<Toy, Integer>("toyRate"));
 
         tableToys.setItems(toys);
-    }
 
+        ObservableList<Prize> prizes = toyShop.fillPrizes();
+
+        colPrizeId.setCellValueFactory(new PropertyValueFactory<Prize, Integer>("prizeId"));
+        colPrizeName.setCellValueFactory(new PropertyValueFactory<Prize, String>("prizeName"));
+        colPrizeGiven.setCellValueFactory(new PropertyValueFactory<Prize, Boolean>("prizeGiven"));
+
+        tablePrize.setItems(prizes);
+    }
 
     // какие другие окна будут загружаться
     private void initLoaders() {
@@ -91,7 +113,6 @@ public class MainForm implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     // обработчик нажатия кнопок
     @FXML
@@ -112,14 +133,13 @@ public class MainForm implements Initializable {
         // смотрим нажатую кнопку
         switch (pressedButton.getId()) {
             case "buttonAdd":
-                toyFormController.setToy(new Toy("", 0, 0));
+                toyFormController.setToy(new Toy());
                 showToyForm();
 
                 // если выход из формы игрушек по Ok
                 if (toyFormController.isOkClicked()) {
                     toyShop.addToy(toyFormController.getToy());
                 }
-
                 break;
 
             case "buttonEdit":
@@ -133,9 +153,64 @@ public class MainForm implements Initializable {
 
                 // если выход из формы игрушек по Ok
                 if (toyFormController.isOkClicked()) {
-                    // TODO: 28.02.2023 добавить обработку изменеия игрушки в списоке
+                    toyShop.updateToy(selectedToy);
                 }
                 break;
+
+            case "buttonDelete":
+                if (selectedToy == null) {
+                    DialogManager.showInfoDialog("Внимание!", "Игрушка не выбрана!");
+                    return;
+                }
+
+                Optional<ButtonType> result =
+                        DialogManager.showConfirmDialog("Удаление", "Удалить выбранную запись?");
+                if (result.get().getButtonData().equals(ButtonBar.ButtonData.OK_DONE)) {
+                    toyShop.deleteToy(selectedToy);
+                }
+
+                break;
+
+            case "buttonGame":
+                Game();
+                break;
+
+            case "buttonGetPrize":
+                if(selectedPrize == null ){
+                    DialogManager.showInfoDialog("Внимание!", "Приз не выбран!");
+                    return;
+                }
+
+                if(!selectedPrize.isPrizeGiven()) {
+                    selectedPrize.setPrizeGiven(true);
+                    toyShop.updatePrize(selectedPrize);
+                }else {
+                    DialogManager.showInfoDialog("Внимание!", "Приз уже выдан!");
+                }
+                break;
+
+        }
+    }
+
+    private void Game() {
+        if (toyShop.getToyCount() == 0) {
+            DialogManager.showInfoDialog("Розыгрыш", "Cписок игрушек пуст! Розыгрыш невозможен.");
+            return;
+        }
+
+        Queue<Toy> toyQueue = new PriorityQueue<>();
+        toyQueue.addAll(toyShop.getToyList());
+
+        if (!toyQueue.isEmpty()) {
+            Toy prizeToy = toyQueue.poll();
+            Prize prize = new Prize(prizeToy.getToyName(), false);
+            prizeToy.setToyCount(prizeToy.getToyCount() - 1);
+            toyShop.addPrize(prize);
+            if (prizeToy.getToyCount() == 0) {
+                toyShop.deleteToy(prizeToy);
+            } else {
+                toyShop.updateToy(prizeToy);
+            }
         }
     }
 

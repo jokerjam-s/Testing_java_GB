@@ -1,6 +1,5 @@
 package ru.gb.testing.toyshop.data;
 
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -10,6 +9,9 @@ public class Toy implements Comparable<Toy> {
     private final SimpleIntegerProperty toyCount = new SimpleIntegerProperty(0);
     private final SimpleIntegerProperty toyRate = new SimpleIntegerProperty(0);
 
+    /**
+     * Конструктора без параметров
+     */
     public Toy(){
         this.setToyName("");
         this.setToyCount(0);
@@ -17,6 +19,23 @@ public class Toy implements Comparable<Toy> {
         this.setToyId(0);
     }
 
+    /**
+     * Конструктор копирования
+     * @param toy
+     */
+    public Toy(Toy toy){
+        this.setToyId(toy.getToyId());
+        this.setToyName(toy.getToyName());
+        this.setToyCount(toy.getToyCount());
+        this.setToyRate(toy.getToyRate());
+    }
+
+    /**
+     * Конструктор
+     * @param name  наименование
+     * @param count количество
+     * @param rate  частота
+     */
     public Toy(String name, int count, int rate){
         this.setToyName(name);
         this.setToyCount(count);
@@ -75,13 +94,13 @@ public class Toy implements Comparable<Toy> {
     @Override
     public int compareTo(Toy o) {
         if(o == null){
-            return -1;
+            return 1;
         }
 
         double delta = this.toyRate.get() - o.toyRate.get();
-        if(delta < 0){
+        if(delta > 0){
             return 1;
-        } else if (delta > 0) {
+        } else if (delta < 0) {
             return -1;
         }
 

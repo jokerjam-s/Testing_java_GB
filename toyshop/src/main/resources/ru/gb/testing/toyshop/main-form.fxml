@@ -12,9 +12,10 @@
          <children>
             <AnchorPane prefHeight="33.0" prefWidth="745.0">
                <children>
-                  <Button fx:id="buttonAdd" onAction="#buttonActionPressed" layoutY="2.0" mnemonicParsing="false" text="Добавить игрушку" />
-                  <Button fx:id="buttonGame" onAction="#buttonActionPressed" layoutX="261.0" layoutY="2.0" mnemonicParsing="false" text="Провести розыгрыш" />
-                  <Button fx:id="buttonEdit" onAction="#buttonActionPressed" layoutX="124.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Изменить игрушку" />
+                  <Button fx:id="buttonAdd" layoutY="2.0" mnemonicParsing="false" onAction="#buttonActionPressed" text="Добавить" />
+                  <Button fx:id="buttonEdit" layoutX="78.0" layoutY="2.0" mnemonicParsing="false" onAction="#buttonActionPressed" text="Изменить" />
+                  <Button fx:id="buttonDelete" layoutX="157.0" layoutY="2.0" mnemonicParsing="false" onAction="#buttonActionPressed" text="Удалить" />
+                  <Button fx:id="buttonGame" layoutX="615.0" layoutY="2.0" mnemonicParsing="false" onAction="#buttonActionPressed" text="Провести розыгрыш" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="228.0" prefWidth="745.0">
@@ -35,16 +36,16 @@
                      <children>
                         <AnchorPane prefHeight="29.0" prefWidth="745.0">
                            <children>
-                              <Button fx:id="buttonGetPrize" onAction="#buttonActionPressed" layoutY="2.0" mnemonicParsing="false" text="Выдать игрушку" />
+                              <Button fx:id="buttonGetPrize" layoutY="2.0" mnemonicParsing="false" onAction="#buttonActionPressed" text="Выдать приз" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="160.0" prefWidth="745.0">
                            <children>
                               <TableView fx:id="tablePrize" prefHeight="174.0" prefWidth="745.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Код" />
-                                  <TableColumn prefWidth="289.0" text="Наименование" />
-                                  <TableColumn prefWidth="105.0" text="Выдана" />
+                                  <TableColumn fx:id="colPrizeId" prefWidth="75.0" text="Код" />
+                                  <TableColumn fx:id="colPrizeName" prefWidth="289.0" text="Наименование" />
+                                  <TableColumn fx:id="colPrizeGiven" prefWidth="105.0" text="Выдана" />
                                 </columns>
                               </TableView>
                            </children>

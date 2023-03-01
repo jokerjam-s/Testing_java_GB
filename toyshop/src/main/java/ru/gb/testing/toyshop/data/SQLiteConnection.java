@@ -12,11 +12,6 @@ import java.util.logging.Logger;
 public class SQLiteConnection {
 
     private static String sqlConnectionString = "jdbc:sqlite:database"+ File.separator+"toys.db";
-
-    /*private static String sqlConnectionString = "jdbc:sqlite:db:" + new File("").getAbsolutePath()
-            + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator + "ru"
-            + File.separator + "gb" + File.separator + "testing" + File.separator + "toyshop"
-            + File.separator + "database" + File.separator + "toys.db";*/
     private static Connection connection;
 
     public static Connection getConnection() throws SQLException {
