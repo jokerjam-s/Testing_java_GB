@@ -192,6 +192,9 @@ public class MainForm implements Initializable {
         }
     }
 
+    /**
+     * розыгрыш призов
+     */
     private void Game() {
         if (toyShop.getToyCount() == 0) {
             DialogManager.showInfoDialog("Розыгрыш", "Cписок игрушек пуст! Розыгрыш невозможен.");

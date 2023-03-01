@@ -117,8 +117,8 @@ public class ToyForm {
         if (txCount.getText().length() == 0) {
             DialogManager.showErrorDialog(errTitleData, "Количество не должно быть пустым!");
             return false;
-        } else if (!checkInt(txCount.getText(), "[0-9]+")) {
-            DialogManager.showErrorDialog(errTitleData, "Неверно задано Количество (>=0)!");
+        } else if (!checkInt(txCount.getText(), "[1-9][0-9]*")) {
+            DialogManager.showErrorDialog(errTitleData, "Неверно задано Количество (>0)!");
             return false;
         }
 
